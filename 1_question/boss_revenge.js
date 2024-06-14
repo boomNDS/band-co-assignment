@@ -1,16 +1,14 @@
-export function boss_revenge(msg) {
-  const words = [...msg];
+export function boss_revenge(sequenceEvent) {
   let revengeCount = 0;
-  let totalWords = msg.length;
-  // n 1 r 0
-  // n 0 r 1
-  // n -1
-  if (totalWords === 0 || msg[0] === "R") {
-    return "Bad boy";
-  } else if (words[totalWords - 1] === "S") {
+  if (
+    sequenceEvent.length === 0 ||
+    sequenceEvent[0] === "R" ||
+    sequenceEvent[sequenceEvent.length - 1] === "S"
+  ) {
     return "Bad boy";
   }
-  for (const action of words) {
+
+  for (const action of sequenceEvent) {
     if (action === "S") {
       revengeCount += 1;
     } else if (action === "R" && revengeCount !== 0) {
