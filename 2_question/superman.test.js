@@ -1,23 +1,17 @@
-// sum.test.js
+// superman.test.js
 import { expect, test } from "vitest";
-import { boss_revenge } from "./boss_revenge";
+import { supermanRescue } from "./superman";
 
-test("test case SRSSRRR", () => {
-  expect(boss_revenge("SRSSRRR")).toBe("Good boy");
+test("superman can protect 2 chicken", () => {
+  expect(
+    supermanRescue(`5 5
+    2 5 10 12 15`),
+  ).toBe(2);
 });
 
-test("test case RSSRR", () => {
-  expect(boss_revenge("RSSRR")).toBe("Bad boy");
-});
-
-test("test case SSSRRRRS", () => {
-  expect(boss_revenge("SSSRRRRS")).toBe("Bad boy");
-});
-
-test("test case SRRSSR", () => {
-  expect(boss_revenge("SRRSSR")).toBe("Bad boy");
-});
-
-test("test case SRSSRRR", () => {
-  expect(boss_revenge("SSRSRRR")).toBe("Good boy");
+test("superman can protect 4 chicken", () => {
+  expect(
+    supermanRescue(`6 10
+    1 11 30 34 35 37`),
+  ).toBe(4);
 });

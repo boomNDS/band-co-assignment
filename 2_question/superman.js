@@ -1,29 +1,21 @@
 /**
- * Adds two numbers
- * @param {String} sequenceEvent
+ * Problem 2: Superman's Chicken Rescue
+ * @param {String} rawData
  * @return {String} Bad boy or Good boy
  */
-export function boss_revenge(sequenceEvent) {
-  let revengeCount = 0;
-  if (
-    sequenceEvent.length === 0 ||
-    sequenceEvent[0] === "R" ||
-    sequenceEvent[sequenceEvent.length - 1] === "S"
-  ) {
-    return "Bad boy";
-  }
 
-  for (const action of sequenceEvent) {
-    if (action === "S") {
-      revengeCount += 1;
-    } else if (action === "R" && revengeCount !== 0) {
-      revengeCount -= 1;
-    }
-  }
-
-  if (revengeCount === 0) {
-    return "Good boy";
-  } else {
-    return "Bad boy";
-  }
+export function getInfo(rawData) {
+  console.log("test");
+  const [info, rawChickenPosition] = rawData.trim().split("\n");
+  const supermanHelpLength = +info.split(" ")[1] ?? 0;
+  const chickenPosition = rawChickenPosition.split(" ").map((i) => +i) ?? [];
+  return { supermanHelpLength, chickenPosition };
 }
+export function supermanRescue(rawData) {
+  const { supermanHelpLength, chickenPosition } = getInfo(rawData);
+  console.log("supermanHelpLength :", supermanHelpLength);
+  console.log("chickenPosition :", chickenPosition);
+}
+
+supermanRescue(`5 5
+2 5 10 12 15`);
