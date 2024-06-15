@@ -17,8 +17,16 @@ export interface IResTransaction {
   tx_hash: string;
 }
 
+enum TxStatus {
+  CONFIRMED = "CONFIRMED",
+  FAILED = "FAILED",
+  PENDING = "PENDING",
+  DNE = "DNE",
+}
+
 export interface IResTransactionStatus {
-  tx_status: "CONFIRMED" | "FAILED" | "PENDING" | "DNE";
+  tx_status: TxStatus;
+  message: string;
 }
 
 /**
@@ -82,8 +90,18 @@ async function broadcastTransaction(
 async function transactionStatusMonitoring(
   tx_hash: string
 ): Promise<IResTransactionStatus> {
+  const messages = {
+    CONFIRMED: "Transaction has been processed and confirmed",
+    FAILED: "Transaction failed to process",
+    PENDING: "Transaction is awaiting processing",
+    DNE: "Transaction does not exist",
+  };
   const res = await callApi(`/check/${tx_hash}`);
-  return res.data as IResTransactionStatus;
+  const status = res.data.tx_status as TxStatus;
+  return {
+    tx_status: status,
+    message: messages[status],
+  };
 }
 
 export { callApi, broadcastTransaction, transactionStatusMonitoring };
