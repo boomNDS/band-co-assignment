@@ -17,7 +17,7 @@ export interface IResTransaction {
   tx_hash: string;
 }
 
-enum TxStatus {
+export enum TxStatus {
   CONFIRMED = "CONFIRMED",
   FAILED = "FAILED",
   PENDING = "PENDING",
